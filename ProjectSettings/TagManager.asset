@@ -53,3 +53,6 @@ TagManager:
   - name: Walls
     uniqueID: 1916818869
     locked: 0
+  - name: Buildings
+    uniqueID: 3907484825
+    locked: 0
