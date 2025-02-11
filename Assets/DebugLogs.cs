@@ -10,6 +10,8 @@ public class DebugLogs : MonoBehaviour
     public Button btnJouer;
     public Button btnParametres;
     public Button btnQuitter;
+    // Bouton X dans parametres
+    public Button btnX;
 
     // Slider
     public Slider slider;
@@ -22,7 +24,11 @@ public class DebugLogs : MonoBehaviour
     // Input Field
     public TMP_InputField inputField;
 
-
+    // Objet qui represente les 3 boutons principaux
+    public GameObject footer;
+    
+    // Objet qui represente le menu parametres
+    public GameObject parametres;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +39,8 @@ public class DebugLogs : MonoBehaviour
         btnParametres.onClick.AddListener(btnParametres_OnClick);
         // Ajouter un listener sur btnQuitter
         btnQuitter.onClick.AddListener(btnQuitter_OnClick);
+        // Ajouter un listener sur btnX
+        btnX.onClick.AddListener(btnX_OnClick);
 
         // Ajouter un listener sur slider
         slider.onValueChanged.AddListener(slider_OnValueChanged);
@@ -45,6 +53,8 @@ public class DebugLogs : MonoBehaviour
 
         // Ajouter un listener sur inputField
         inputField.onEndEdit.AddListener(inputField_OnEndEdit);
+        
+        parametres.SetActive(false);
     }
 
     // Update is called once per frame
@@ -61,13 +71,20 @@ public class DebugLogs : MonoBehaviour
 
     void btnParametres_OnClick()
     {
-        
+        footer.SetActive(false);
+        parametres.SetActive(true);
     }
 
     void btnQuitter_OnClick()
     {
         // Envoyer un message dans la console quand on clique sur le bouton Quitter
         Debug.Log("On a appuye sur Quitter");
+    }
+
+    void btnX_OnClick()
+    {
+        parametres.SetActive(false);
+        footer.SetActive(true);
     }
 
     void slider_OnValueChanged(float value)
