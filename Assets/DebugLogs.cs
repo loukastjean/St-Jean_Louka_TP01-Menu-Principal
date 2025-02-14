@@ -18,6 +18,7 @@ public class DebugLogs : MonoBehaviour
 
     // Toggle
     public Toggle toggle;
+
     // Dropdown
     public TMP_Dropdown dropDown;
 
