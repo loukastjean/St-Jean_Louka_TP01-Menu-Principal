@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,25 +12,25 @@ public class DebugLogs : MonoBehaviour
     public Button btnParametres;
     public Button btnQuitter;
     // Bouton X dans parametres
-    public Button btnX;
+    public Button btnFermerParametres;
 
     // Slider
-    public Slider slider;
+    public Slider volumeSlider;
 
     // Toggle
-    public Toggle toggle;
+    public Toggle multijoueurToggle;
 
     // Dropdown
-    public TMP_Dropdown dropDown;
+    public TMP_Dropdown dropDownNombreJoueurs;
 
     // Input Field
-    public TMP_InputField inputField;
+    public TMP_InputField inputFieldNomJoueur;
 
     // Objet qui represente les 3 boutons principaux
-    public GameObject footer;
+    public GameObject menuPrincipalFooter;
     
     // Objet qui represente le menu parametres
-    public GameObject parametres;
+    public GameObject menuParametres;
 
     // Start is called before the first frame update
     void Start()
@@ -41,21 +42,21 @@ public class DebugLogs : MonoBehaviour
         // Ajouter un listener sur btnQuitter
         btnQuitter.onClick.AddListener(btnQuitter_OnClick);
         // Ajouter un listener sur btnX
-        btnX.onClick.AddListener(btnX_OnClick);
+        btnFermerParametres.onClick.AddListener(btnFermerParametres_OnClick);
 
         // Ajouter un listener sur slider
-        slider.onValueChanged.AddListener(slider_OnValueChanged);
+        volumeSlider.onValueChanged.AddListener(volumeSlider_OnValueChanged);
 
         // Ajouter un listener sur toggle
-        toggle.onValueChanged.AddListener(toggle_OnValueChanged);
+        multijoueurToggle.onValueChanged.AddListener(multijoueurToggle_OnValueChanged);
 
         // Ajouter un listener pour dropdown
-        dropDown.onValueChanged.AddListener(dropDown_OnValueChanged);
+        dropDownNombreJoueurs.onValueChanged.AddListener(dropDownNombreJoueurs_OnValueChanged);
 
         // Ajouter un listener sur inputField
-        inputField.onEndEdit.AddListener(inputField_OnEndEdit);
+        inputFieldNomJoueur.onEndEdit.AddListener(inputField_OnEndEdit);
         
-        parametres.SetActive(false);
+        menuParametres.SetActive(false);
     }
 
     // Update is called once per frame
@@ -72,8 +73,8 @@ public class DebugLogs : MonoBehaviour
 
     void btnParametres_OnClick()
     {
-        footer.SetActive(false);
-        parametres.SetActive(true);
+        menuPrincipalFooter.SetActive(false);
+        menuParametres.SetActive(true);
     }
 
     void btnQuitter_OnClick()
@@ -82,33 +83,34 @@ public class DebugLogs : MonoBehaviour
         Debug.Log("On a appuye sur Quitter");
     }
 
-    void btnX_OnClick()
+    void btnFermerParametres_OnClick()
     {
-        parametres.SetActive(false);
-        footer.SetActive(true);
+        menuParametres.SetActive(false);
+        menuPrincipalFooter.SetActive(true);
     }
 
-    void slider_OnValueChanged(float value)
+    void volumeSlider_OnValueChanged(float value)
     {
         // Envoyer un message dans la console quand on change la valeur du slider dans les parametres
-        Debug.Log($"La valeur du slider est de {value}");
+        Debug.Log($"La valeur du slider de volume est de {value * 100}%");
     }
 
-    void toggle_OnValueChanged(bool value)
+    void multijoueurToggle_OnValueChanged(bool value)
     {
         // Envoyer un message dans la console quand on clique sur le bouton toggle
-        Debug.Log($"La valeur du toggle est de {value}");
+        Debug.Log($"La valeur du toggle en ligne est de {value}");
     }
 
-    void dropDown_OnValueChanged(int value)
+    void dropDownNombreJoueurs_OnValueChanged(int value)
     {
         // Envoyer un message dans la console quand on selectionne une valeur du dropdown
-        Debug.Log($"On a selectionne l'option {value} du dropdown");
+        String optionNombreJoueurs = dropDownNombreJoueurs.options[value].text;
+        Debug.Log($"On a selectionne l'option {optionNombreJoueurs} du dropdown de nombre de joueurs");
     }
 
     void inputField_OnEndEdit(string value)
     {
         // Envoyer un message dans la console quand on entre du texte dans le inputfield
-        Debug.Log($"On a entre {value} dans le inputfield");
+        Debug.Log($"On a entre {value} dans le inputfield du nom du joueur");
     }
 }
