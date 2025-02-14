@@ -54,7 +54,7 @@ public class DebugLogs : MonoBehaviour
         dropDownNombreJoueurs.onValueChanged.AddListener(dropDownNombreJoueurs_OnValueChanged);
 
         // Ajouter un listener sur inputField
-        inputFieldNomJoueur.onEndEdit.AddListener(inputField_OnEndEdit);
+        inputFieldNomJoueur.onEndEdit.AddListener(inputFieldNomJoueur_OnEndEdit);
         
         menuParametres.SetActive(false);
     }
@@ -108,7 +108,7 @@ public class DebugLogs : MonoBehaviour
         Debug.Log($"On a selectionne l'option {optionNombreJoueurs} du dropdown de nombre de joueurs");
     }
 
-    void inputField_OnEndEdit(string value)
+    void inputFieldNomJoueur_OnEndEdit(string value)
     {
         // Envoyer un message dans la console quand on entre du texte dans le inputfield
         Debug.Log($"On a entre {value} dans le inputfield du nom du joueur");
